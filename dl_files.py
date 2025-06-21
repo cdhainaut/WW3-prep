@@ -71,9 +71,10 @@ def main():
         day = start_date + dt.timedelta(days=delta)
         date_str = day.strftime("%Y%m%d")
         for hour in range(24):
-            filename = f"MARC_WW3_{date_str}T{hour:02d}Z.nc"
+            filename = f"MARC_WW3-{zone}_{date_str}T{hour:02d}Z.nc"
             target_files.append(filename)
 
+    downloaded_files = []
     if args.ftp:
         # Lecture des identifiants
         with open(args.credentials, "r") as f:
@@ -87,7 +88,7 @@ def main():
                 ftp.login(ftp_user, ftp_pass)
                 ftp.cwd(ftp_dir)
                 for filename in tqdm(target_files, desc="FTP download WW3"):
-                    local_path = download_dir / filename
+                    local_path: Path = download_dir / filename
                     if local_path.exists():
                         downloaded_files.append(str(local_path))
                         continue
@@ -99,7 +100,6 @@ def main():
                         print(f"Error FTP download {filename}: {e}")
     else:
         # Download files
-        downloaded_files = []
         for filename in tqdm(target_files, desc="Downloading WW3 files"):
             url = base_url + filename
             local_path = download_dir / filename
