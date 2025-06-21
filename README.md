@@ -68,7 +68,7 @@ python process_files.py ww3_data/*.nc --output manchesud.nc --processed_dir proc
 - `--output` : name of the concatenated NetCDF file
 - `--processed_dir` : folder for the processed NetCDF files
 
-3. Convert to QtVlm-compatible GRIB2
+### 3. Convert to QtVlm-compatible GRIB2
 
 Use the following command:
 
