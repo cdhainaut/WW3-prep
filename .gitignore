@@ -5,5 +5,5 @@ __pycache__/
 *.nc
 *.grib*
 *.grb*
-
+ftp_credentials.json
 
